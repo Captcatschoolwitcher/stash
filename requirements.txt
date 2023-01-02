@@ -8,7 +8,6 @@ django-sslserver==0.22
 django_debug_toolbar==3.8.1
 djangorestframework==3.14.0
 easy-thumbnails==2.8.4
-pickleshare==0.7.5
 Pillow==9.0.1
 social-auth-app-django==5.0.0
 social-auth-core==4.3.0
