@@ -1,0 +1,47 @@
+{% extends './base.html' %}
+{% load static %}
+{% block title %}Регистрация{% endblock %}
+{% block content %}<header class="navbar bg-dark" style="height: 80px">
+    <form class="d-flex mt-3" role="search" style="padding: 6px;" >
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button type="submit" class="btn btn-outline-secondary" style='color: whitesmoke; border-color: whitesmoke;'>Search</button>
+        </form>
+</header>
+    <div class="d-flex align-items-center justify-content-center" style="margin-top: 100px;margin-bottom: 112px;">
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <form class="form-signin"style='margin: auto 5px;
+    width: 90%;
+    max-width: 30rem;
+    padding: 2rem;
+    border-radius: 10px;
+    font-size: 16px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    background-color: white;
+    box-shadow: 0 2px 8px #3ca3c1;' method="post" action="{% url 'signup' %}">
+            {% csrf_token %}
+            <h1 class="h3 mb-2 mt-2 font-weight-normal">Для регистрации укажите имя пользователя и пароль</h1>
+            <label for="inputUsername" class="sr-only">Имя пользователя</label>
+            {{ form.username }}
+            <label for="inputPassword" class="sr-only">Пароль</label>
+            {{ form.password }}
+            <label for="ReInputPassword" class="sr-only">Повторите пароль</label>
+            {{ form.repeat_password }}
+            <div class="d-flex justify-content-center" style="flex-direction: row"><button class=" btn mt-2 btn-lg btn-light btn-block" style="border-color: black;color:black; background-color: aliceblue" type="submit">Регистрация</button></div>
+        </form>
+    </div>
+{% endblock %}
